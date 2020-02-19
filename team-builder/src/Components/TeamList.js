@@ -1,13 +1,15 @@
 import React from "react";
 
-const TheTeam = props => {
+const TeamList = ({ arrayData }) => {
   return (
     <div>
-      {props.map(name => (
-        <ul>{name}</ul>
-      ))}
+      <ul>
+        {arrayData.map(name => (
+          <li>{name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default TheTeam;
+export default TeamList;
