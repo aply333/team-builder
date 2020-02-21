@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from "react";
 import TeamList from "./TeamList";
 
-const Form = ({ testData }) => {
-  let array = testData;
-  const [name, setName] = useState("");
-  const [email, setEmail] =useState("");
+const Form = () => {
+  const [members, setMembers] = useState([
+    // { name: "Andrei", email: "andre@andrei", role: "student" }
+  ]);
 
-  const [dispName, setDispName] = useState("")
-  
+  const [member, setMember] = useState({
+    name: "",
+    email: "",
+    role: ""
+  });
 
-  const nameHandler = event => {
-    setName(event.target.value);
+  const addMember = member => {
+    const newMember = {
+      id: Date.now(),
+      name: member.name,
+      email: member.email,
+      role: member.role
+    };
+    setMembers([...members, newMember]);
   };
 
-  const emailHandler = event =>{
-    setEmail(event.target.value);
-  }
+  // handleChange
+  const memberHandler = event => {
+    setMember({ ...member, [event.target.name]: event.target.value });
+  };
 
-  console.log("nameState", name);
-
+  // onSubmit
   const entrySubmit = event => {
     event.preventDefault();
-    setDispName(name)
-    array.push(dispName)
+    addMember(member);
+    console.log(members);
   };
 
   return (
@@ -30,23 +39,34 @@ const Form = ({ testData }) => {
       <h1>Join the List</h1>
       <form onSubmit={event => entrySubmit(event)}>
         <label>
-          Name: <input type="text" onChange={event => nameHandler(event)} />
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={members.name}
+            onChange={memberHandler}
+          />
         </label>
         <label>
-          Email: <input type="text" onChange={event => emailHandler(event)} />
+          Email:
+          <input
+            type="text"
+            name="email"
+            value={members.email}
+            onChange={memberHandler}
+          />
         </label>
         <label>
           Position
-          <select>
-              <option>Backend Engineer</option>
-              <option>Frontend Engineer</option>
-              <option>Designer</option>
+          <select name="role" onChange={memberHandler}>
+            <option>Backend Engineer</option>
+            <option>Frontend Engineer</option>
+            <option>Designer</option>
           </select>
         </label>
         <button>Submit</button>
       </form>
-      <h1>Who: {dispName}</h1>
-      <TeamList array={array}/>
+      <TeamList member={members} />
     </div>
   );
 };

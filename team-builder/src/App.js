@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <Form testData={testData}/>
+      <Form />
     </div>
   );
 }

@@ -1,11 +1,13 @@
 import React from "react";
 
-const TeamList = ({ array }) => {
+const TeamList = props => {
+  console.log("insideTeam",props.member)
   return (
+    
     <div>
       <ul>
-        {array.map(name => (
-          <li>{name}</li>
+        {props.member.map(member => (
+        <li>{member.name}: {member.email} : {member.role}</li>
         ))}
       </ul>
     </div>
