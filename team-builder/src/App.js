@@ -9,8 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <Form/>
-      <br />
+      <Form testData={testData}/>
     </div>
   );
 }

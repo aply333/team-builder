@@ -1,10 +1,10 @@
 import React from "react";
 
-const TeamList = ({ arrayData }) => {
+const TeamList = ({ array }) => {
   return (
     <div>
       <ul>
-        {arrayData.map(name => (
+        {array.map(name => (
           <li>{name}</li>
         ))}
       </ul>
